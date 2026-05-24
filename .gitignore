@@ -1,0 +1,47 @@
+# Virtual environments
+venv*/
+venv_acd/
+venv_new/
+.venv/
+env/
+ENV/
+
+# Node.js
+**/node_modules/
+**/dist/
+**/dist-ssr/
+
+# Python Cache
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+.pytest_cache/
+
+# Local Environment Variables & Secrets
+**/.env
+**/.env.*
+**/instance/
+
+# IDE/Editor configs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Large Logs & Temp Data
+**/*.log
+**/*.log.*
+backend/worker_err.log
+uploads/
+downloads/
+scratch/
+test_logs/
+Logs/
+Bengin_malicious_logs/
+*.docx
+*.pdf
