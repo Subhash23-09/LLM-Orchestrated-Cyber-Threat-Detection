@@ -1,5 +1,6 @@
 import { BookOpen, Loader2, Sparkles, Quote } from 'lucide-react';
 import { useState } from 'react';
+import { API_BASE_URL } from '../api/client';
 
 interface NarrativeViewProps { agentReports: Record<string, any>; decision: any; }
 
@@ -13,7 +14,7 @@ export function NarrativeView({ agentReports, decision }: NarrativeViewProps) {
     setNarrative('');
     setHasRun(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/narrative/storylines', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/narrative/storylines`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agent_reports: agentReports, decision }),

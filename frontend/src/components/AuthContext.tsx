@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
+import { API_BASE_URL } from '../api/client';
 
 interface User {
     id: number;
@@ -45,7 +46,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const fetchUser = async (authToken: string) => {
         try {
-            const response = await fetch('http://localhost:8000/api/v1/auth/verify', {
+            const response = await fetch(`${API_BASE_URL}/api/v1/auth/verify`, {
                 headers: {
                     'Authorization': `Bearer ${authToken}`
                 }

@@ -1,5 +1,6 @@
 import { Download, Check, Loader2, Archive, FileText } from 'lucide-react';
 import { useState } from 'react';
+import { API_BASE_URL } from '../api/client';
 
 interface ReportingViewProps { agentReports: Record<string, any>; decision: any; }
 
@@ -49,7 +50,7 @@ SHA-256 Digest: ${digest}
   const handleDownload = async (format: 'json' | 'txt') => {
     setIsDownloading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/reporting/report', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/reporting/report`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agent_reports: agentReports, decision }),

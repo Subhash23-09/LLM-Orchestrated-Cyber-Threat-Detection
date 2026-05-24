@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Brain, Shield, Zap, Terminal, Loader2, ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../api/client';
 
 interface Event {
     type: 'thought' | 'answer';
@@ -28,7 +29,7 @@ export const StreamingDashboard: React.FC = () => {
         setStatus('analyzing');
 
         try {
-            const response = await fetch('http://localhost:8000/api/v1/orchestration/chat_stream', {
+            const response = await fetch(`${API_BASE_URL}/api/v1/orchestration/chat_stream`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ trigger: 'manual' }),

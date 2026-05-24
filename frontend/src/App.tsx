@@ -17,6 +17,7 @@ import { StatsBar } from './components/StatsBar';
 import { useAuth } from './components/AuthContext';
 import { Brain, ArrowRight } from 'lucide-react';
 import { StreamingDashboard } from './components/StreamingDashboard';
+import { API_BASE_URL } from './api/client';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
@@ -302,12 +303,12 @@ function App() {
       setSignals(prev => [...newSignals, ...prev]);
     } else {
       try {
-        const previewResp = await fetch('http://localhost:8000/api/v1/processing/signals');
+        const previewResp = await fetch(`${API_BASE_URL}/api/v1/processing/signals`);
         if (previewResp.ok) setSignals(await previewResp.json());
       } catch (e) { console.error('Could not fetch signal preview', e); }
     }
     try {
-      const memResponse = await fetch('http://localhost:8000/api/v1/memory/context');
+      const memResponse = await fetch(`${API_BASE_URL}/api/v1/memory/context`);
       if (!memResponse.ok) throw new Error();
       setMemory(await memResponse.json());
     } catch {
@@ -317,7 +318,7 @@ function App() {
   };
 
   const handleRunOrchestrator = async () => {
-    const response = await fetch('http://localhost:8000/api/v1/orchestration/orchestrate', { method: 'POST' });
+    const response = await fetch(`${API_BASE_URL}/api/v1/orchestration/orchestrate`, { method: 'POST' });
     const data = await response.json();
     if (data?.plan?.decision && !data.plan.decision.includes('ERROR')) {
       const decisionString = data.plan.decision;
@@ -346,7 +347,7 @@ function App() {
         setShowOrchestrator(false); setActiveAgents([]); setAgentReports({});
         setDecision(null); setHasProcessed(false);
         localStorage.removeItem(PERSISTENCE_KEY);
-        await fetch('http://localhost:8000/api/v1/processing/clear_session', { method: 'POST' });
+        await fetch(`${API_BASE_URL}/api/v1/processing/clear_session`, { method: 'POST' });
         window.location.reload();
       } catch (e) { console.error('Failed to clear session', e); }
     }

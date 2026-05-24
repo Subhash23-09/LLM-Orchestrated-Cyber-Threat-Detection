@@ -1,5 +1,6 @@
 import { BookOpen, Check, Database, Loader2, AlertTriangle } from 'lucide-react';
 import { useState } from 'react';
+import { API_BASE_URL } from '../api/client';
 
 export function LearningView({ caseFile }: { caseFile: any }) {
   const [isLearning, setIsLearning] = useState(false);
@@ -9,7 +10,7 @@ export function LearningView({ caseFile }: { caseFile: any }) {
     setIsLearning(true);
     console.log('DEBUG: Sending case_file to /learn:', caseFile);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/narrative/learn', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/narrative/learn`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ case_file: caseFile }),

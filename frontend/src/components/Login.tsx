@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Shield, Mail, Lock, ArrowRight, Loader2, AlertCircle, Zap, Database } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import { API_BASE_URL } from '../api/client';
 
 export const Login: React.FC = () => {
   const [identifier, setIdentifier] = useState('');
@@ -17,7 +18,7 @@ export const Login: React.FC = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ identifier, password }),

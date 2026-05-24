@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Mail, Lock, User, ArrowRight, Loader2, AlertCircle, Zap, Database } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../api/client';
 
 export const Signup: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ export const Signup: React.FC = () => {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/auth/signup', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, email, password }),

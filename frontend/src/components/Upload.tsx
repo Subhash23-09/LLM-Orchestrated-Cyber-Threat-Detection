@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Upload as UploadIcon, File, CheckCircle, AlertCircle, Download, Brain, CloudUpload } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
-import { uploadFile, processFile } from '../api/client';
+import { uploadFile, processFile, API_BASE_URL } from '../api/client';
 
 export interface UploadProps {
   onUploadSuccess?: (filename: string) => void;
@@ -81,7 +81,7 @@ export function Upload({ onUploadSuccess, onAnalysisStart, onAnalysisComplete }:
   const downloadSignals = (filename: string) => {
     const url = downloadLinks[filename];
     if (!url) return;
-    window.open(`http://localhost:8000${url}`, '_blank');
+    window.open(`${API_BASE_URL}${url}`, '_blank');
   };
 
   return (

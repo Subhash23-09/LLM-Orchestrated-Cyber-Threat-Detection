@@ -1,6 +1,7 @@
 import { Shield, AlertTriangle, Check, Play, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { API_BASE_URL } from '../api/client';
 
 interface AgentReport {
   agent: string;
@@ -35,7 +36,7 @@ export function AgentExecutionView({ suggestedAgent, onComplete }: AgentExecutio
     if (!suggestedAgent) return;
     setIsRunning(true);
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/agents/${suggestedAgent}/run`, { method: 'POST' });
+      const response = await fetch(`${API_BASE_URL}/api/v1/agents/${suggestedAgent}/run`, { method: 'POST' });
       if (!response.ok) {
         throw new Error(`Agent execution failed with status ${response.status}`);
       }

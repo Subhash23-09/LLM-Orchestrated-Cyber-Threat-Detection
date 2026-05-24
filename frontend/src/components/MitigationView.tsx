@@ -1,5 +1,6 @@
 import { Shield, CheckCircle2, Terminal, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../api/client';
 
 interface Plays { title: string; actions: string[]; priority: string; }
 
@@ -20,7 +21,7 @@ export function MitigationView({ agentReports, decision, onComplete }: Mitigatio
   const fetchPlaybooks = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/v1/mitigation/recommend', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/mitigation/recommend`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ agent_reports: agentReports }),
