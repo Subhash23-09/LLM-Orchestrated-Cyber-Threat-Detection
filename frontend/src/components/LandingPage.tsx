@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Zap, Lock, Database, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import frontendImage from '../assets/frontend_image.jpg';
 
 export const LandingPage: React.FC = () => {
   return (
@@ -88,7 +89,7 @@ export const LandingPage: React.FC = () => {
               style={{ background: 'rgba(37,99,235,0.12)' }} />
             <div className="relative rounded-2xl overflow-hidden"
               style={{ border: '1px solid var(--border-card)', background: 'var(--bg-surface)' }}>
-              <img src="/frontend_image.jpg" alt="Cyber Threat Analysis Dashboard"
+              <img src={frontendImage} alt="Cyber Threat Analysis Dashboard"
                 className="w-full h-auto opacity-90" />
             </div>
           </motion.div>
