@@ -20,7 +20,7 @@ from fastapi.responses import Response
 load_dotenv()
 
 # --- Configuration ---
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+aiomysql://root:password@localhost/acd_sdi")
+DATABASE_URL = os.getenv("DATABASE_URL")
 VT_API_KEY = os.getenv("VIRUSTOTAL_API")
 
 # --- Database Setup ---
@@ -45,7 +45,11 @@ app = FastAPI(title="ACD-SDI Unified Platform")
 from fastapi.middleware.cors import CORSMiddleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://llm-orchestrated-cyber-threat-detection.vercel.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -88,4 +92,4 @@ async def metrics():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
