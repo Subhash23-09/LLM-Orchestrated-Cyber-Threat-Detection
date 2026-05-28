@@ -1,4 +1,4 @@
-import { Shield, CheckCircle2, Terminal, Loader2 } from 'lucide-react';
+import { Shield, CheckCircle2, Terminal } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { API_BASE_URL } from '../api/client';
 
