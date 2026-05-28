@@ -1,4 +1,4 @@
-import { Shield, AlertTriangle, Check, Play, Loader2 } from 'lucide-react';
+import { Shield, Check, Play, Loader2 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { API_BASE_URL } from '../api/client';
