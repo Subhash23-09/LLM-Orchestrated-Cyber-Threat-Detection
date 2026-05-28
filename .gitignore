@@ -45,3 +45,7 @@ Logs/
 Bengin_malicious_logs/
 *.docx
 *.pdf
+
+# Deployment artifacts to exclude
+DEPLOY_GUIDE.md
+Procfile
